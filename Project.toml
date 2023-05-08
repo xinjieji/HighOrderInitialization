@@ -1,0 +1,17 @@
+name = "HighOrderInitialization"
+uuid = "7b788144-ee01-4017-8689-4f9460fc55f1"
+authors = ["Xinjie <xinjie@mit.edu>"]
+version = "0.1.0"
+
+[deps]
+CircularArrays = "7a955b69-7140-5f4e-a0ed-f168c5e2e749"
+ForwardDiff = "f6369f11-7733-5829-9624-2563aa707210"
+GLMakie = "e9467ef8-e4e7-5192-8a1a-b1aee30e663a"
+GeometryBasics = "5c1252a2-5f33-56bf-86c9-59e7332b4326"
+ImplicitPlots = "55ecb840-b828-11e9-1645-43f4a9f9ace7"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+Meshing = "e6723b4c-ebff-59f1-b4b7-d97aa5274f73"
+NearestNeighbors = "b8a86587-4115-5ab1-83bc-aa920d37bbce"
+OffsetArrays = "6fe1bfb0-de20-5000-8ca7-80f57d26f881"
+Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
+SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
