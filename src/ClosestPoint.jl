@@ -79,13 +79,18 @@ end
 """
 Apply the scheme to close grid points, then generate the new ϕ field.
 """
-function local_closest_point_2D(clouds, cell_index, Cell_num, C, p, old_ϕ, grid::Grid; iter = 20, r = 2*minimum(grid_spacing(grid)), tol = minimum(grid_spacing(grid))^p)
+function local_closest_point_2D(clouds, cell_index, Cell_num, C, p, old_ϕ, grid::Grid; 
+    iter = 20, 
+    r = 2*minimum(grid_spacing(grid)), 
+    tol = minimum(grid_spacing(grid))^p,
+    gap = 5
+    )
     kdtree = KDTree(clouds) # build the k-d tree
     ϕ = copy(old_ϕ)
     # loop over every point
     for n in 1:length(cell_index)
-        for i = -4:5
-            for j = -4:5
+        for i = -(gap-1):gap
+            for j = -(gap-1):gap
                 I = [cell_index[n][1] + i, cell_index[n][2] + j]
                 if I[1] < 1 || I[1] > grid.dims[1] || I[2] < 1 || I[2] > grid.dims[2]
                     continue
