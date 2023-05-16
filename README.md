@@ -18,6 +18,10 @@ Reinitialization/Redistancing is a process that is used to redefine the level se
 -  `InterfaceSample.jl` samples a point cloud on the implicit surface.
 -  `PiecewiseApprox.jl` includes functions to do polynomial approximation for the cells covering the surface.
 -  `Plots.jl` wraps up some functions for plotting, including plot surface/contour from a function or from a field.
+
+`\examples` includes an example of a rotating circle with slot.
+
+`\test` includes the general usage and an accuracy test.
   
 ## To do
 
@@ -60,4 +64,63 @@ levels = [-0.1, -0.05, 0, 0.05, 0.1, 0.2, 0.3]
 level_set_contour(grid,f,levels=levels, show_grid = true, clabels=true)
 ```
 
-![image info](./figures/contour_from_f.png)
+<img src="./figures/contour_from_f.png" width="200" />
+
+```julia
+# plot the surface
+implicit_plot_2D(grid,f)
+```
+
+<img src="./figures/surface_from_f.png" width="200" />
+
+We can also plot the surface/contour from a scalar field:
+
+```julia
+# generate the level set field
+ϕ = set_field(grid,f)
+# plot the contour
+field_contour(grid,ϕ,levels=levels, show_grid = true, clabels=true)
+# plot the surface
+field_contour(grid,ϕ,levels=[0], show_grid = true, clabels=false)
+```
+
+For the reinitialization, first we generate polynomial approximation for the cells covering the surface (Note for Taylor degree 2 and 3, we need at least one layer of cell outside the surface, for Taylor degree 4 and 5, we need two layers):
+
+```julia
+# cell_index labels the lower-left point of the cell
+# X collects all the points used for polynomials 
+# C collects all the polynomial coefficients
+# 3 indicates Taylor degree 2 (expects 3rd order)
+cell_index, X, C = cal_coeff_2D(grid,ϕ,3)
+```
+
+Then we sample a point cloud:
+
+```julia
+# clouds collects the point cloud
+# Cell_num record collects the labels of corresponding cells
+clouds, Cell_num = sample_2D(cell_index, C, 3, grid)
+# Could plot the figure to check the sampled points:
+implicit_plot_2D(grid,f, dataset=clouds, markersize = 2)
+```
+
+<img src="./figures/point_cloud.png" width="200" />
+
+Finally we find the closest points for query points:
+
+```julia
+ϕ_new = closest_point_2D(clouds, Cell_num, C, 3, ϕ, grid)
+# plot the contour
+field_contour(grid,ϕ_new,levels=levels, clabels=true)
+```
+
+<img src="./figures/reinitialized_contour.png" width="200" />
+
+These steps are also wrapped up in one function. Given the grid and the initial level set field:
+
+```julia
+# The expected order of accuracy, use Taylor degree p-1
+p = 3 
+reinitialization_2D(ϕ, grid, p)
+```
+
