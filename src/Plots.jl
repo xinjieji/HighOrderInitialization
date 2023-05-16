@@ -143,7 +143,7 @@ implicit_plot_2D(grid, func)
 function implicit_plot_2D(grid::Grid, func; 
     show_grid = true,
     lw = 2,
-    dataset = [0.0 0.0], 
+    dataset = [0.0 0.0;0.0 0.0], 
     markersize = 0,
     axis = false,
     plot_grid = false,
