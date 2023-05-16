@@ -1,5 +1,5 @@
 # Test the static re-initialization method for an ellipse interface
-using HighOrderInitialization
+using HighOrderReinitialization
 using LinearAlgebra
 
 f(x) = (1-exp(-(x[1]-0.3)^2 - (x[2]-0.3)^2))*(sqrt(4*x[1]^2+9*x[2]^2)-1)

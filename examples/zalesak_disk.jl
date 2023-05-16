@@ -1,6 +1,6 @@
 # Zalesak disk test case
 
-using HighOrderInitialization
+using HighOrderReinitialization
 using LinearAlgebra
 using Plots
 

@@ -1,4 +1,4 @@
-name = "HighOrderInitialization"
+name = "HighOrderReinitialization"
 uuid = "7b788144-ee01-4017-8689-4f9460fc55f1"
 authors = ["Xinjie <xinjie@mit.edu>"]
 version = "0.1.0"

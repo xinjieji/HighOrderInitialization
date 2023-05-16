@@ -1,4 +1,4 @@
-module HighOrderInitialization
+module HighOrderReinitialization
 
 using Meshing
 using GeometryBasics

@@ -1,4 +1,4 @@
-using HighOrderInitialization
+using HighOrderReinitialization
 
 grid = Grid((24,24), (-3/4,3/4))
 #f(x) = (x[1]^4 + x[2]^4 - 1) * (x[1]^2 + x[2]^2 - 2) + x[1]^5 * x[2]
