@@ -100,7 +100,7 @@ function collect_points_2D(grid::Grid, ϕ, p::Int64)
         if st==12
             # index distance list
             list = [(-1,1), (-1,0), (0,2), (0,1), (0,0), (0,-1),
-            (1,2), (1,2), (1,0), (1,-1), (2,1), (2,0)]
+            (1,1), (1,2), (1,0), (1,-1), (2,1), (2,0)]
         elseif st==24
             # index distance list
             list = [(i,j) for i in -1:2 for j in -1:2]
